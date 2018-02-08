@@ -1,0 +1,4 @@
+.gitignore
+*.ts
+!*.d.ts
+/src

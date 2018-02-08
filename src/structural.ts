@@ -1,4 +1,4 @@
-import { Validated, ErrorOfValidated, ValueOfValidated } from "./validated";
+import { Validated } from "./validated";
 
 export function isString(v: any): Validated<string, string> {
   return typeof v === 'string'
@@ -26,13 +26,14 @@ export function isArray<A>(fn: (v: any) => Validated<string, A>) {
   }
 }
 
-type IsObjectArg<O extends object> = { [K in keyof O]: (v: any) => Validated<string, O[K]> }
+export type IsObjectArg<O extends object> = { [K in keyof O]: (v: any) => Validated<string, O[K]> }
 export function isObject<O extends object>(o: IsObjectArg<O>) {
   return (v: any): Validated<string, O> => {
     if (typeof v === 'object') {
       const applied: { [K in keyof O]?: Validated<string, O[K]> } = {}
-      Object.keys(o).forEach((key: keyof O) => {
-        applied[key] = o[key](v[key])
+      Object.keys(o).forEach((key: string) => {
+        const index = key as keyof O
+        applied[index] = o[index](v[key])
       })
       const allApplied = applied as { [K in keyof O]: Validated<string, O[K]> }
       return Validated.combine(allApplied)
