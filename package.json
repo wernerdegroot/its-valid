@@ -1,0 +1,24 @@
+{
+  "name": "its-valid",
+  "version": "0.0.1",
+  "description": "It's valid! - Typescript validators",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wernerdegroot/its-valid.git"
+  },
+  "keywords": [
+    "Typescript",
+    "validators",
+    "valid"
+  ],
+  "author": "Werner de Groot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wernerdegroot/its-valid/issues"
+  },
+  "homepage": "https://github.com/wernerdegroot/its-valid#readme"
+}
