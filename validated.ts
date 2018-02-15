@@ -86,6 +86,10 @@ export class Valid<E, A> {
     return new Valid<E, B>(fn(this.value))
   }
 
+  mapError<F>(fn: (e: E) => F): Validated<F, A> {
+    return new Valid<F, A>(this.value)
+  }
+
   fold<B>(ok: (v: Valid<E, A>) => B, error: (v: Invalid<E, A>) => B): B {
     return ok(this)
   }
@@ -112,12 +116,12 @@ export class Invalid<E, A> {
     return new Invalid<E, B>(this.errors)
   }
 
-  fold<B>(ok: (v: Valid<E, A>) => B, error: (v: Invalid<E, A>) => B): B {
-    return error(this)
+  mapError<F>(fn: (e: E) => F): Validated<F, A> {
+    return new Invalid<F, A>(this.errors.map(fn))
   }
 
-  coerceValue<B>(): Invalid<E, B> {
-    return new Invalid<E, B>(this.errors)
+  fold<B>(ok: (v: Valid<E, A>) => B, error: (v: Invalid<E, A>) => B): B {
+    return error(this)
   }
 
   andThen<B>(fn: (a: A) => Validated<E, B>): Validated<E, B> {
