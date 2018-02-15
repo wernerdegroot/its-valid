@@ -1,7 +1,7 @@
 export type Validated<E, A> = Valid<E, A> | Invalid<E, A>
 
-type ErrorOfValidated<V extends Validated<any, any>> = V['errorType']
-type ValueOfValidated<V extends Validated<any, any>> = V['valueType']
+export type ErrorOfValidated<V extends Validated<any, any>> = V['errorType']
+export type ValueOfValidated<V extends Validated<any, any>> = V['valueType']
 
 export const Validated = {
 

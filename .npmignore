@@ -1,4 +1,4 @@
 .gitignore
+tsconfig.json
 *.ts
 !*.d.ts
-/src
